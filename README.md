@@ -11,3 +11,6 @@ I learned that to write down the prime factor decomposition for n I don't necess
 
 ## Lessons Learned from breakCamelCase
 Boolean checks with a more "functional" style are easier to read. 
+
+## Lessons Learned from arrayHelpers
+I learned that there are two main ways of extending the `Array` "class" or constructor function. The first is to simply add methods to the `Array.prototype` property directly. Although this works, the better way of extending the `Array` class is to use the `Object.defineProperty(obj, propName, options)` method. `obj` is the object on which to define the property, `propName` is the name of the property and `options` is an object with the property value and other configuration options. Using this, we can define a new property on any object and it will be NOT be enumerable or writable by default. This means that the new property will not show up in a `for ... of` iteration and the property cannot be reassigned.
