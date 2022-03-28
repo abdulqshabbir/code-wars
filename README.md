@@ -17,3 +17,6 @@ I learned that there are two main ways of extending the `Array` "class" or const
 
 ## Lessons Learned from titleCaes
 I learned that reassigning elements using the first parameter of the `forEach` loop is not possible. However, the `forEach` loop comes with additional parameters to help with this.  Using all three parameters in the form `forEach(elem, idx, arr)` lets to perform a reassignment of `arr` at index `idx` as you loop through the array by using the syntax `arr[idx] = ...`.
+
+## Lessons Learned from takeAWalk
+I learned that when only movement in the up, down, right, left directions is allowed, one can use two independent variables to keep track of left-right or up-down motion separately.
