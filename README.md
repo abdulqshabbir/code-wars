@@ -20,3 +20,6 @@ I learned that reassigning elements using the first parameter of the `forEach` l
 
 ## Lessons Learned from takeAWalk
 I learned that when only movement in the up, down, right, left directions is allowed, one can use two independent variables to keep track of left-right or up-down motion separately.
+
+## Lessons Learned from persistance
+I learned how to use recursion on an unfamilar problem. 
