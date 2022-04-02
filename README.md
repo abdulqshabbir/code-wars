@@ -23,3 +23,9 @@ I learned that when only movement in the up, down, right, left directions is all
 
 ## Lessons Learned from persistance
 I learned how to use recursion on an unfamilar problem. 
+
+## Lessons Learned from maximumSubarray
+If looking for a consecutive maximum sum, you can reset the currentSum to zero each time currentSum is negative. This is because adding values that are negative to the sum guarantees that the sum will get smaller and so each step takes the locally optimal path.
+
+## Lessons Learned from twoSum
+If the array is already sorted, use a "sliding window" pattern where you start one pointer on the left and one on the right. Move the pointers one step in the direction needed for the elements to sum up to the target -- this ensures each step is locally optimal.
