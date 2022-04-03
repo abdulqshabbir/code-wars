@@ -29,3 +29,6 @@ If looking for a consecutive maximum sum, you can reset the currentSum to zero e
 
 ## Lessons Learned from twoSum
 If the array is already sorted, use a "sliding window" pattern where you start one pointer on the left and one on the right. Move the pointers one step in the direction needed for the elements to sum up to the target -- this ensures each step is locally optimal.
+
+## Lessons Learned from buySellStocks
+Very similar to the twoSum problem where a "sliding window" of two pointers can be used maximize profits by keeping the left pointer on the lowest price seen so far and incrementing the right pointer through the array.  Any time the price drops on a given day both pointers can reset to the new lowest price.
