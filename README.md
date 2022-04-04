@@ -35,3 +35,6 @@ Very similar to the twoSum problem where a "sliding window" of two pointers can 
 
 ## Lessons Learned from containsDuplicate
 Learned that there are multiple ways of checking for a duplicate and they involve tradeoffs in space and time. Sorting the array and checking adjacent elements can help you find duplicates in O(nlogn) time and O(1) space. However, using a hashmap reduces time complexity to O(n) and increases space complexity to O(n)
+
+## Lessons Learned from containsDuplicate
+This question was quite difficult to do without the division operation. However, creating a "preProduct" and "postProduct" auxillary array lets one store away the products in O(n) time using O(n) space. Another option to use less space is to overwrite the result array with the "preProduct" array and then compute the postProduct on the fly. This approach uses O(1) space.
