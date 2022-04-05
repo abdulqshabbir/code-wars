@@ -38,3 +38,6 @@ Learned that there are multiple ways of checking for a duplicate and they involv
 
 ## Lessons Learned from containsDuplicate
 This question was quite difficult to do without the division operation. However, creating a "preProduct" and "postProduct" auxillary array lets one store away the products in O(n) time using O(n) space. Another option to use less space is to overwrite the result array with the "preProduct" array and then compute the postProduct on the fly. This approach uses O(1) space.
+
+## Lessons Learned from findMinInRotatedArray
+Learned how to do a binary search recursively to solve the problem.
