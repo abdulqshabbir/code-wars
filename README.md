@@ -41,3 +41,6 @@ This question was quite difficult to do without the division operation. However,
 
 ## Lessons Learned from findMinInRotatedArray
 Learned how to do a binary search recursively to solve the problem.
+
+## Lessons Learned from perfectSquare
+Learned that the naive approach runs in O(sqrt(n)) where you try to find the square of numers from 1 ... n and stop when the square equals num or is larger. However, a binary search, where we find the middle number from 1 ... n and see if its square is equal to one lets us eliminate half the numbers in each iteration, therefore running in O(logn) time which is faster.
