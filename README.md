@@ -43,4 +43,7 @@ This question was quite difficult to do without the division operation. However,
 Learned how to do a binary search recursively to solve the problem.
 
 ## Lessons Learned from perfectSquare
-Learned that the naive approach runs in O(sqrt(n)) where you try to find the square of numers from 1 ... n and stop when the square equals num or is larger. However, a binary search, where we find the middle number from 1 ... n and see if its square is equal to one lets us eliminate half the numbers in each iteration, therefore running in O(logn) time which is faster.
+Learned that the naive approach runs in O(sqrt(n)) where you try to find the square of numers from 1 ... n and stop when the square equals num or is larger. However, a binary search, where we find the middle number from 1 ... n and see if its square is equal to num lets us eliminate half the numbers in each iteration, therefore running in O(logn) time which is faster.
+
+## Lessons Learned from removeDuplicates
+Learned that if given a sorted array with duplicate values and asked to remove duplicates we can use a two pointer approach to solve the problem. One pointer is used to keep track of an "empty" slot for inserting new unique values, the other pointer runs through the array and anytime there is a unique value (prev val !== val) it can insert the unique value into the empty slot.
