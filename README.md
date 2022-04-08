@@ -47,3 +47,8 @@ Learned that the naive approach runs in O(sqrt(n)) where you try to find the squ
 
 ## Lessons Learned from removeDuplicates
 Learned that if given a sorted array with duplicate values and asked to remove duplicates we can use a two pointer approach to solve the problem. One pointer is used to keep track of an "empty" slot for inserting new unique values, the other pointer runs through the array and anytime there is a unique value (prev val !== val) it can insert the unique value into the empty slot.
+
+## Lessons learned from cache
+Learned that we can utilize closures to cache "expensive" API calls. To cache away results we can use a wrapper function with a hashmap which returns the function that actually makes the expensive API call. Each time the function is called with new arguments we can store away the result into our hashmap and other function calls can access them through closure.
+Also learned that if we're not sure what arguments a function is called with, we can use the `arguments` object which gives us an Array-like list of arguments during call time. To convert it into an array we can use `Array.from(arguments)`.
+Finally, `func.apply(null, arguments)` can be used to make function calls with the `arguments` object. `func.apply(null, arguments)` takes a list of arguments and `func.call(null, arg1, arg2,..., argN)` takes all arguments one at a time.
