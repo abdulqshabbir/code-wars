@@ -13,7 +13,7 @@ var maxDepth = function(root) {
     return Math.max(leftSubtree, rightSubtree)
 }
 
-// Iterative BFS
+// Iterative DFS
 var maxDepth = function(root) {
     if (root === null) return 0
     
@@ -36,4 +36,28 @@ var maxDepth = function(root) {
         depth = depth + 1
     }
     return depth
+}
+
+// Iterative pre-order DFS
+var maxDepth = function(root) {
+    if (root === null) return 0
+    
+    let stack = []
+    stack.push({node: root, depth: 1}) 
+    
+    let maxDepth = 0
+    
+    while (stack.length !== 0) {
+        let { node, depth } = stack.pop()
+        if (depth > maxDepth) {
+            maxDepth = depth
+        }
+        if (node.right !== null) {
+            stack.push({node: node.right, depth: depth + 1})
+        }
+        if (node.left !== null) {
+            stack.push({node: node.left, depth: depth + 1})
+        }
+    }
+    return maxDepth
 }
