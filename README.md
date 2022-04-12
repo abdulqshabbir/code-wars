@@ -58,3 +58,6 @@ Learned that we can find the max depth of a binary tree in three fundamentally d
 
 ## Lessons Learned from compose
 Learned that there was a very clean one-line solution if you want to pass `val` through a series of functions `f1, f2, f3, ..., fn` invovling the reduce function.
+
+## Lessons Learned from sameTree
+Leared that a recursive DFS algorithm is a clean way of checking if two trees are identical.
