@@ -55,3 +55,6 @@ Finally, `func.apply(null, arguments)` can be used to make function calls with t
 
 ## Lessons learned from maxBinaryDepth (Leet Code) (April 10th)
 Learned that we can find the max depth of a binary tree in three fundamentally different ways. Although initially a recursive DFS approach occured to me, I realized that there are at least two other ways.  The first involves doing DFS using a stack instead of the call stack provided by the browser. The second involves doing a level-order (BFS) traversal using a queue. Next challenge is to solve the problem in these two different ways.
+
+## Lessons Learned from compose
+Learned that there was a very clean one-line solution if you want to pass `val` through a series of functions `f1, f2, f3, ..., fn` invovling the reduce function.
