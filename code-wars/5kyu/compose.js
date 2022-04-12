@@ -13,3 +13,4 @@ var compose = function(val, ...rest) {
     return result
 }
 
+var compose = (val, ...fns) => fns.reduce((acc, fn) => fn(acc), val)
