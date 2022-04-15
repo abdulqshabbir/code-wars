@@ -61,3 +61,6 @@ Learned that there was a very clean one-line solution if you want to pass `val` 
 
 ## Lessons Learned from sameTree
 Leared that a recursive DFS algorithm is a clean way of checking if two trees are identical.
+
+## Lessons Learned from levelOrderTraversal
+This problem was especially difficult when trying to find my bug. I learned that to do a level order traversal we can use a queue data structure. For each level we can keep pulling nodes off the queue and addign their non-null children onto the queue. We can take a "snapshot" of the length of the queue before we process the nodes to tell us how many iterations to run to capture all nodes on a particular level.

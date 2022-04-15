@@ -20,9 +20,10 @@
     queue.push(root) 
     while (queue.length !== 0) {
         let current
-        for (let i = 0; i < queue.length; i++) {
+        result[level] = []
+        let qLength = queue.length
+        for (let i = 0; i < qLength; i++)   {
             current = queue.shift()
-            result[level] = []
             result[level].push(current.val)
             if (current.left !== null) {
                 queue.push(current.left)
@@ -31,7 +32,7 @@
                 queue.push(current.right)
             }
         }
-        level++ 
+        level = level + 1 
     } 
     
     return result
