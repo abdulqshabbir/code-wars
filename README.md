@@ -64,3 +64,10 @@ Leared that a recursive DFS algorithm is a clean way of checking if two trees ar
 
 ## Lessons Learned from levelOrderTraversal
 This problem was especially difficult when trying to find my bug. I learned that to do a level order traversal we can use a queue data structure. For each level we can keep pulling nodes off the queue and addign their non-null children onto the queue. We can take a "snapshot" of the length of the queue before we process the nodes to tell us how many iterations to run to capture all nodes on a particular level.
+
+## Lessons Learned from isSubtree
+This problem uses an earlier concept of using DFS to check if two trees are identical. To check if s is a subtree of t, we can break it down into 4 main cases:
+1. if t and s are both empty then s is a subtree of t
+2. if t is empty and s is non-empty then s cannot be a subtree of t
+3. if s is empty and t is non-empty then s is a subtree of t
+4. if s and t are the same tree OR t.left and s are the same tree OR t.right and s are the same tree then s is a subtree of t
