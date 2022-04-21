@@ -71,3 +71,6 @@ This problem uses an earlier concept of using DFS to check if two trees are iden
 2. if t is empty and s is non-empty then s cannot be a subtree of t
 3. if s is empty and t is non-empty then s is a subtree of t
 4. if s and t are the same tree OR t.left and s are the same tree OR t.right and s are the same tree then s is a subtree of t
+
+## Lessons Larned from validPalindrome
+A two pointer approach here correctly solves the problem in O(n) time and O(1) space. Although we can use the built-in javascript `replace` function to replace all non-alphanumeric characters with an empty string, we can use our own `isAlhaNumeric` function by looking at each character's ASCII code.
