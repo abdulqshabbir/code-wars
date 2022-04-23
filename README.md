@@ -74,3 +74,7 @@ This problem uses an earlier concept of using DFS to check if two trees are iden
 
 ## Lessons Larned from validPalindrome
 A two pointer approach here correctly solves the problem in O(n) time and O(1) space. Although we can use the built-in javascript `replace` function to replace all non-alphanumeric characters with an empty string, we can use our own `isAlhaNumeric` function by looking at each character's ASCII code.  
+
+## Lessons Learned from minStack
+Although it is relatively straightforward to create a stack with O(1) time complexity for push, pop and top operations, creating a function `getMin` which runs in O(1) time was challenging. The solution involves using extra memory to store an auxillary stack which keeps track of the "min value so far" for each node in the stack.
+
