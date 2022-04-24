@@ -78,3 +78,5 @@ A two pointer approach here correctly solves the problem in O(n) time and O(1) s
 ## Lessons Learned from minStack
 Although it is relatively straightforward to create a stack with O(1) time complexity for push, pop and top operations, creating a function `getMin` which runs in O(1) time was challenging. The solution involves using extra memory to store an auxillary stack which keeps track of the "min value so far" for each node in the stack.
 
+## Lessons Learned from climbStairs
+This problem can be solved recursively by breaking the problem down into simpler self-similar problems. Let's suppose we have a function, `f` that returns the number of ways to get from 0th step to the nth step.  Since there is only one way to get from the (n-1)th step to the nth step and only one way to get from the (n-2)th step to the nth step we can use the recurrence relation `f(n) = f(n-1) + f(n-2)` to solve the problem. Additionally, we can use memoization to cache the results to expensive `f(n-1)` and `f(n)` calls.
