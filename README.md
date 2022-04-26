@@ -80,3 +80,6 @@ Although it is relatively straightforward to create a stack with O(1) time compl
 
 ## Lessons Learned from climbStairs
 This problem can be solved recursively by breaking the problem down into simpler self-similar problems. Let's suppose we have a function, `f` that returns the number of ways to get from 0th step to the nth step.  Since there is only one way to get from the (n-1)th step to the nth step and only one way to get from the (n-2)th step to the nth step we can use the recurrence relation `f(n) = f(n-1) + f(n-2)` to solve the problem. Additionally, we can use memoization to cache the results to expensive `f(n-1)` and `f(n)` calls.
+
+## Lessons Learned from twoSum
+We can solve this problem using brute force in O(n^2) time and O(1) space where we check each element in the array with every complement. However, a more optimal solution is to use a hash map where the key is the value seen in the array and the value is the index.  Using a hashmap we can iterate through the array once and check if we've already seen the target's complement. This algorithm will run in O(n) time and also O(n) space. 
