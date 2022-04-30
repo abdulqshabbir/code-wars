@@ -26,3 +26,23 @@ var reverseList = function(head) {
     head = newList
     return head
 };
+
+
+/*
+    Recursive solution which runs in O(n) space and O(n) time
+*/
+function reverseRecursively(curr, newHead) {
+    if (curr === null) {
+        // if no new node left to reverse, return new head
+        return newHead
+    }
+    // grab the remaining nodes we still have to reverse
+    let rest = curr.next
+    // reverse link at the current node
+     curr.next = newHead
+     // update head of new list
+     newHead = curr
+     return reverseRecursively(rest, newHead)
+ }
+
+ 
