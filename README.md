@@ -83,3 +83,6 @@ This problem can be solved recursively by breaking the problem down into simpler
 
 ## Lessons Learned from twoSum
 We can solve this problem using brute force in O(n^2) time and O(1) space where we check each element in the array with every complement. However, a more optimal solution is to use a hash map where the key is the value seen in the array and the value is the index.  Using a hashmap we can iterate through the array once and check if we've already seen the target's complement. This algorithm will run in O(n) time and also O(n) space. 
+
+## Lessons Learned from mergeSortedLists
+This problem can be solved in O(n + m) time where n is len(list1) and m is len(list2). This problem becomes much simpler if we use a dummy node at the start of the linked list so we can guarantee a non-empty list to insert into.
