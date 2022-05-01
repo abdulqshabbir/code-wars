@@ -86,3 +86,7 @@ We can solve this problem using brute force in O(n^2) time and O(1) space where 
 
 ## Lessons Learned from mergeSortedLists
 This problem can be solved in O(n + m) time where n is len(list1) and m is len(list2). This problem becomes much simpler if we use a dummy node at the start of the linked list so we can guarantee a non-empty list to insert into.
+
+## Lessons Learned from groupAnagrams
+This optimal solution runs in O(n * k) time where n is the length of strs and k is the length of the average word in strs. This is because for each word in strs we iterate over each char in word which takes O(nk) time and then we create a unique key using the count array by stringifying it. Since the count array will have a maximum of 26 characters stringifying count will take O(26) time which is O(1).
+This problem uses a clever trick of creating a unique hashmap key for each anagram by using an array of 26 elements where each element corresponds to a letter in the anagram. By stringifying the array we can generate a unique has in O(1) time.
