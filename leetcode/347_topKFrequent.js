@@ -9,20 +9,22 @@ var topKFrequent = function(nums, k) {
         }
     }
     
-    const countToValues = new Array(nums.length).fill([])
+    const countToValues = new Array(nums.length + 1)
+    const len = countToValues.length - 1
+    for (let i = 1; i <= len; i++) {
+        countToValues[i] = []
+    }
     const result = []
     let inserts = 0
-    let i = nums.length-1
+    let i = len
     
     // O(n) time to set up countToValues array
     for (let [val, count] of Object.entries(counts)) {
         val = parseInt(val)
-        console.log(countToValues[count])
-        countToValues[count][0].push(val) 
+        countToValues[count].push(val)
     }
-    console.log(countToValues)
     
-    while (inserts < k && i >= 0) {
+    while (inserts < k && i > 0) {
         while (countToValues[i].length === 0) {
             i--
         }
@@ -33,5 +35,3 @@ var topKFrequent = function(nums, k) {
     
     return result
 };
-
-topKFrequent([1, 1, 1, 2, 2, 3], 2)
