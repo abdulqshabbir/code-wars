@@ -54,3 +54,45 @@ var isValidSudoku = function(board) {
     }
     return true
 };
+
+// Second solution uisng javascript maps and sets
+
+var isValidSudoku = function(board) {
+    let rowsToValues = new Map()
+    let colsToValues = new Map()
+    let boxToValues = new Map()
+    
+    for (let i = 0; i <= 8; i++) {
+        rowsToValues.set(i, new Set())
+        colsToValues.set(i, new Set())
+        for (let j = 0; j <= 8; j++) {
+            let boxRow = Math.floor(i/3)
+            let boxCol = Math.floor(j/3)
+            if (boxToValues.has(JSON.stringify([boxRow, boxCol]))) {
+                continue
+            } else {
+                boxToValues.set(JSON.stringify([boxRow, boxCol]), new Set())
+            }
+        }
+    }
+    
+    for (let r = 0; r < board.length; r++) {
+        for (let c = 0; c < board[0].length; c++) {
+            if (board[r][c] === ".") {
+                continue
+            }
+            let rowValues = rowsToValues.get(r)
+            let colValues = colsToValues.get(c)
+            let boxValues = boxToValues.get(JSON.stringify([Math.floor(r/3), Math.floor(c/3)]))
+            let val = board[r][c]
+            
+            if (rowValues.has(val) || colValues.has(val) || boxValues.has(val)) return false
+            
+            rowValues.add(val) 
+            colValues.add(val) 
+            boxValues.add(val)
+        }
+    }
+    
+    return true
+};
