@@ -94,3 +94,6 @@ This problem uses a clever trick of creating a unique hashmap key for each anagr
 ## Lessons Learned from topKFrequent
 The optimal solution can run in O(n) time if we iterate over all elements to create a hashmap of val -> counts. Then we can iterate over all the keys in the hashmap and transform it into an array which maps count (index) -> val. Since the array is bounded in size -- counts can only be from 1, ... , n we can traverse the array backwards in linear time.
 I also learned that `Array.fill([])` should not be used to create 2D arrays as it creates one array and copies it by reference to every element in the array.
+
+## Lessons learned from longestReplacementSubstring
+Learned that a sliding window pattern can give us an O(n) runtime. If we use a counts hashmap to store the frequency of characters in the window we can compute how many character we would have to replace. If number of replacements <= k we can make our window larger else we can make the window smaller.
