@@ -97,3 +97,7 @@ I also learned that `Array.fill([])` should not be used to create 2D arrays as i
 
 ## Lessons learned from longestReplacementSubstring
 Learned that a sliding window pattern can give us an O(n) runtime. If we use a counts hashmap to store the frequency of characters in the window we can compute how many character we would have to replace. If number of replacements <= k we can make our window larger else we can make the window smaller.
+
+## Lessons learned from permutation
+A hashmap of counts for both strings can help us solve this in O(n) time and O(n) space. However, there are many small optimizations one can make. For example, instead of generating a new hash map at every iteration, we can create two hashmaps to start with and only update values in the second hashmap as we "slide" our window. 
+Also, instead of looping over all keys of the hashmap to check for a permutation we can maintain a "matches" variable which we constantly update to keep track of how many letters of the alphabet are matches. 
