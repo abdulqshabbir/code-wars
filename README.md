@@ -83,3 +83,24 @@ This problem can be solved recursively by breaking the problem down into simpler
 
 ## Lessons Learned from twoSum
 We can solve this problem using brute force in O(n^2) time and O(1) space where we check each element in the array with every complement. However, a more optimal solution is to use a hash map where the key is the value seen in the array and the value is the index.  Using a hashmap we can iterate through the array once and check if we've already seen the target's complement. This algorithm will run in O(n) time and also O(n) space. 
+
+## Lessons Learned from mergeSortedLists
+This problem can be solved in O(n + m) time where n is len(list1) and m is len(list2). This problem becomes much simpler if we use a dummy node at the start of the linked list so we can guarantee a non-empty list to insert into.
+
+## Lessons Learned from groupAnagrams
+This optimal solution runs in O(n * k) time where n is the length of strs and k is the length of the average word in strs. This is because for each word in strs we iterate over each char in word which takes O(nk) time and then we create a unique key using the count array by stringifying it. Since the count array will have a maximum of 26 characters stringifying count will take O(26) time which is O(1).
+This problem uses a clever trick of creating a unique hashmap key for each anagram by using an array of 26 elements where each element corresponds to a letter in the anagram. By stringifying the array we can generate a unique has in O(1) time.
+
+## Lessons Learned from topKFrequent
+The optimal solution can run in O(n) time if we iterate over all elements to create a hashmap of val -> counts. Then we can iterate over all the keys in the hashmap and transform it into an array which maps count (index) -> val. Since the array is bounded in size -- counts can only be from 1, ... , n we can traverse the array backwards in linear time.
+I also learned that `Array.fill([])` should not be used to create 2D arrays as it creates one array and copies it by reference to every element in the array.
+
+## Lessons learned from longestReplacementSubstring
+Learned that a sliding window pattern can give us an O(n) runtime. If we use a counts hashmap to store the frequency of characters in the window we can compute how many character we would have to replace. If number of replacements <= k we can make our window larger else we can make the window smaller.
+
+## Lessons learned from permutation
+A hashmap of counts for both strings can help us solve this in O(n) time and O(n) space. However, there are many small optimizations one can make. For example, instead of generating a new hash map at every iteration, we can create two hashmaps to start with and only update values in the second hashmap as we "slide" our window. 
+Also, instead of looping over all keys of the hashmap to check for a permutation we can maintain a "matches" variable which we constantly update to keep track of how many letters of the alphabet are matches. 
+
+## Lessons from reversePolishNotation
+This question can be solved in O(n) time by using a stack to store the numbers remaining to evaluate. A stack is appropiate because the two "most recent" neighbours of an operation are the "first" to be evaluated. 

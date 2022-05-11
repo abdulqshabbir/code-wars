@@ -1,22 +1,16 @@
-function p(args) {
-    let result = []
-
-    permuteRecursively(args, 0, "", result)
-
+function permute(rest, result, soFar = "") {
+    if (rest === "") {
+        result.push(soFar)
+    } else {
+        for (let i = 0; i < rest.length; i++) {
+            let newSoFar = soFar + rest[i]
+            let remaining = rest.substring(0, i) + rest.substring(i + 1)
+            permute(remaining, result, newSoFar)
+        }
+    }
     return result
 }
 
-function permuteRecursively(args, start, temp, result) {
-    if (start === args.length - 1) {
-        temp += args[start]
-        result.push(temp)
-        return
-    }
-
-    for (let i = start; i < args.length; i++) {
-        temp += args[start]
-        permuteRecursively(args, start + 1, temp, result)
-    }
-}
-
-console.log(p([1, 2, 3]))
+let res = []
+permute("ABC", res)
+console.log(res)
