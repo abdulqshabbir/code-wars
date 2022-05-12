@@ -103,4 +103,7 @@ A hashmap of counts for both strings can help us solve this in O(n) time and O(n
 Also, instead of looping over all keys of the hashmap to check for a permutation we can maintain a "matches" variable which we constantly update to keep track of how many letters of the alphabet are matches. 
 
 ## Lessons from reversePolishNotation
-This question can be solved in O(n) time by using a stack to store the numbers remaining to evaluate. A stack is appropiate because the two "most recent" neighbours of an operation are the "first" to be evaluated. 
+This question can be solved in O(n) time by using a stack to store the numbers remaining to evaluate. A stack is appropiate because the two "most recent" neighbours of an operation are the "first" to be evaluated.
+
+## Lessons from generateParentheses
+Using a recursive approach where we make a decision to either add an open paren, closed paren or neither (base case) to the end of our string `soFar` was the approach to solving. The number of parameters to the recursive function can be reduced by declaring the function inside of the outer function. Also, we can use backtracking to reduce the memory complexity.

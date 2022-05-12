@@ -23,11 +23,9 @@ function solve(result, openLeft, openStack, soFar, n) {
     newOpenStack.pop();
     solve(result, openLeft, newOpenStack, soFar + ")", n);
   }
-  if (openStack.length === 0 && openLeft > 0) {
+  if (openLeft > 0) {
     let newOpenStack = openStack.slice();
     newOpenStack.push("(");
     solve(result, openLeft - 1, newOpenStack, soFar + "(", n);
   }
 }
-
-console.log(generateParenthesis(2));
