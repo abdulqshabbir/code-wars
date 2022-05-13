@@ -107,3 +107,6 @@ This question can be solved in O(n) time by using a stack to store the numbers r
 
 ## Lessons from generateParentheses
 Using a recursive approach where we make a decision to either add an open paren, closed paren or neither (base case) to the end of our string `soFar` was the approach to solving. The number of parameters to the recursive function can be reduced by declaring the function inside of the outer function. Also, we can use backtracking to reduce the memory complexity.
+
+## Lessons from dailyTemperatures
+To solve the "Next Greater Elemment" or "Next Smaller Element" problem we can make use of a `monotonic stack` which stores elements in an non-increasing or non-decreasing order. Elements added to stack are only added once and removed (at most) once so we can solve problems in linear time and linear space.
