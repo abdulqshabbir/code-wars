@@ -1,39 +1,34 @@
-var minEatingSpeed = function(piles, h) {
-    /*
-        find maxPile
-        hours per pile = Maht.ceil(h/piles.length)
-        find maxK = (maxPile)/hours per pile
-        
-        binarySearch for minK from 1 to maxK
-            low = 1
-            high = maxK
-            
-            while (low <= high) {
-                calculate mid
-                
-                if (kokoCanEat(piles, h, mid)) {
-                    if (mid < minK) update minK
-                    high = mid - 1
-                } else {
-                    low = mid + 1
-                }
-            }
-        
-        return minK
+function kokoCanEat(piles, h, speed) {
+    let i = 0
+    // speed = 5
+    // piles = [1, 5, 9]
+    while (i < piles.length && h >0) {
+        let timeToEat = Math.ceil(piles[i]/speed)
+        h -= timeToEat
+        i++
+    }
 
-        function kokoCanEat(piles, h, k)
-            i = 0 
-            p = piles.slice()
-            
-            while (i < piles.length && h>=0)
-                p[i] = p[i] - k  
-                h--
-                if (p[i] <=0) i++
-            
-            if i === piles.length
-                return true
-            
-            else 
-                return false
-    */   
+    if (i >= piles.length) return true
+
+    return false
+}
+
+var minEatingSpeed = function(piles, h) {
+    let lowSpeed = 1
+    let highSpeed = Math.max(...piles)
+    let k = highSpeed
+
+    while (lowSpeed <= highSpeed) {
+        let midSpeed = Math.floor((lowSpeed + highSpeed)/2)
+
+        if (kokoCanEat(piles, h, midSpeed)) {
+            if (midSpeed < k) k = midSpeed 
+            highSpeed = midSpeed - 1
+        } else {
+            lowSpeed = midSpeed + 1
+        }
+    }
+    return k
 };
+
+minEatingSpeed([3,6,7,11], 8)

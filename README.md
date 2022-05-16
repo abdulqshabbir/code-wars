@@ -110,3 +110,6 @@ Using a recursive approach where we make a decision to either add an open paren,
 
 ## Lessons from dailyTemperatures
 To solve the "Next Greater Elemment" or "Next Smaller Element" problem we can make use of a `monotonic stack` which stores elements in an non-increasing or non-decreasing order. Elements added to stack are only added once and removed (at most) once so we can solve problems in linear time and linear space.
+
+## Lessons learned from kokoEats
+Anytime we can bound our solution range (in increasing order) with a `min` and a `min` we can use binary search to find our solution in O(logn) time.
