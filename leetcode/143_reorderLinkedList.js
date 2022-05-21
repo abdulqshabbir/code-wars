@@ -1,10 +1,7 @@
-/**
- * Definition for singly-linked list.
- * function ListNode(val, next) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.next = (next===undefined ? null : next)
- * }
- */
+function ListNode(val, next) {
+    this.val = (val===undefined ? 0 : val)
+    this.next = (next===undefined ? null : next)
+}
 var reorderList = function(head) {
     let listArray = []
     let curr = head 
@@ -40,14 +37,41 @@ var reorderList = function(head) {
     
 };
 
-function ListNode(val, next) {
-    this.val = (val===undefined ? 0 : val)
-    this.next = (next===undefined ? null : next)
-}
+var reorderList = function(head) {
+    if (head.next === null) return
+    
+    // find middle of list
+    let slow = head
+    let fast = head.next
+    while (fast && fast.next !== null) {
+        slow = slow.next
+        fast = fast.next.next
+    }
+    
+    // reverse second half
+    let secondHead = slow.next
+    let secondRest = secondHead.next
+    slow.next = null
+    let prev = null
+    
+    while (secondRest !== null) {
+        secondRest = secondHead.next
+        secondHead.next = prev
+        prev = secondHead
+        secondHead = secondRest
+    }
+    if (prev === null) {
+        prev = secondHead
+    }
 
-let l = new ListNode(1)
-
-l.next = new ListNode(2)
-l.next.next = new ListNode(3)
-
-reorderList(l)
+    // stich together lists
+    let first = head, second = prev
+    while (second) {
+        let temp1 = first.next
+        let temp2 = second.next
+        first.next = second
+        second.next = temp1
+        first = temp1
+        second = temp2
+    }
+};

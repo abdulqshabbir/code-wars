@@ -113,3 +113,6 @@ To solve the "Next Greater Elemment" or "Next Smaller Element" problem we can ma
 
 ## Lessons learned from kokoEats
 Anytime we can bound our solution range (in increasing order) with a `min` and a `min` we can use binary search to find our solution in O(logn) time.
+
+## Lessons learned from reorderLinkedList
+We can complete this in O(n) time and space if we use an auxillary array to store all our nodes and use two pointers to move from the outside in. A clever approach using O(1) space involves finding the middle of the list, reversing the second half and then "stiching" together the left/right lists.
