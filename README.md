@@ -116,3 +116,10 @@ Anytime we can bound our solution range (in increasing order) with a `min` and a
 
 ## Lessons learned from reorderLinkedList
 We can complete this in O(n) time and space if we use an auxillary array to store all our nodes and use two pointers to move from the outside in. A clever approach using O(1) space involves finding the middle of the list, reversing the second half and then "stiching" together the left/right lists.
+
+## Lessons learned from removingNthNode
+Here we can make two passses through the list if we first find the size of the list.  Or we can keep two pointers with a gap of `n` so we can get access to the "nth from last" node using a single pass. Also, a dummy node really helps here if we are asked to remove a node from the start of the list.
+
+## Lessons learned from copyRandomList
+Here we can use a map to keep a mapping of our "original node" to our "copy node". This lets us clone the original list in O(n) space and O(n) time.
+However, if we add each "copy node" right after our "original node" we can reference the corresponding copy reference node in O(1) space.
