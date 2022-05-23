@@ -123,3 +123,7 @@ Here we can make two passses through the list if we first find the size of the l
 ## Lessons learned from copyRandomList
 Here we can use a map to keep a mapping of our "original node" to our "copy node". This lets us clone the original list in O(n) space and O(n) time.
 However, if we add each "copy node" right after our "original node" we can reference the corresponding copy reference node in O(1) space.
+
+## Lessons learned from findDuplicate
+For this problem, an interesting approach exists where we treat the values of the array as references to indices in the same array. We can use Floyd's algorithm to determine the start of a linked list and use this to find the duplicate in O(1) space and O(n) time.
+
