@@ -44,7 +44,7 @@ LRUCache.prototype.get = function(key) {
         let node = this.cache.get(key)
         
         this.remove(node)  
-        this.push(node)
+        this.push(node, this)
         
         return val
     }
@@ -55,7 +55,7 @@ LRUCache.prototype.put = function(key, value) {
     let newNode = new Node(value, key)
     if (this.cache.has(key)) {
         this.remove(this.cache.get(key)) 
-        this.push(newNode)
+        this.push(newNode, this)
         this.cache.set(key, newNode)
     } else {
         // at capacity
@@ -68,9 +68,10 @@ LRUCache.prototype.put = function(key, value) {
             
             // remove corresponding (key, value) from cache
             this.cache.delete(lruKey)
+            this.remove(lruNode)
             
             // add newNode to queue
-            this.push(newNode)
+            this.push(newNode, this)
             
             // add newNode to cache
             this.cache.set(key, newNode)
@@ -87,3 +88,7 @@ cache.put(2, 2)
 cache.get(1)
 cache.put(3, 3)
 cache.get(2)
+cache.push(4,4)
+cache.get(1)
+cache.get(3)
+cache.get(4)
