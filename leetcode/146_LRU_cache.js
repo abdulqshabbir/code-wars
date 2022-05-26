@@ -1,103 +1,86 @@
-var ListNode = function(val, next = null, prev = null) {
+var Node = function(val, key = null) {
     this.val = val
-    this.next = next
-    this.prev = prev
-}
-
-var LinkedList = function() {
-    this.head = null
-    this.tail = null
-}
-
-LinkedList.prototype.add = function (key) {
-    this.remove(key)
-    if (this.tail === null) {
-        this.head = new ListNode(key)
-        this.tail = this.head
-    } else {
-        this.tail.next = new ListNode(key, null, this.tail)
-        this.tail = this.tail.next
-    }
-}
-
-LinkedList.prototype.pop = () => {
-    if (this.tail) {
-        let result = this.tail.val
-        let previous = this.tail.prev
-        previous.next = null
-        this.tail.prev = null
-        this.tail = previous
-        return val
-    }
-}
-
-LinkedList.prototype.removeFirst = () => {
-    // head -> 1 <-> 2 -> null
-    if (!this.head) {
-        return null
-    }
-    if (!this.head.next) {
-        let res = this.head.val
-        this.head = null
-        this.tail = null
-        return res
-    }
-    let res = this.head.val
-    let next = this.head.next
-    next.prev = null
-    this.head = this.head.next
-    return res
-}
-
-LinkedList.prototype.remove = (key) => { 
-    let curr = this.head
-    
-    while (curr) {
-        if (curr.val === key) {
-            let previous = curr.prev
-            let next = curr.next
-            previous.next = next
-            next.prev = previous
-            curr.next = null
-            curr.prev = null
-            break
-        } 
-    }
+    this.key = key
+    this.prev = null
+    this.next = null 
 }
 
 var LRUCache = function(capacity) {
-    this.cache = new Map()
-    this.list = new LinkedList()
     this.capacity = capacity
+    this.cache = new Map()   // key -> Node reference
+    
+    this.left = new Node(0)  // this.left.next LRU
+    this.right = new Node(0) // this.right.prev MRU
+    
+    this.left.next = this.right
+    this.right.prev = this.left
 };
+
+LRUCache.prototype.remove = (node) => {
+    let previous = node.prev 
+    let next = node.next
+    
+    previous.next = next
+    next.prev = previous
+    
+    node.prev = null
+    node.next = null
+}
+
+LRUCache.prototype.push = (node, that) => {
+    let previous = that.right.prev
+    let next = that.right
+
+    previous.next = node
+    next.prev = node
+
+    node.prev = previous
+    node.next = next
+}
 
 LRUCache.prototype.get = function(key) {
     if (this.cache.has(key)) {
-        this.list.remove(key)
-        this.list.add(key)
-        return this.cache.get(key)
-    } else {
-        return -1
+        let val = this.cache.get(key).val
+        let node = this.cache.get(key)
+        
+        this.remove(node)  
+        this.push(node)
+        
+        return val
     }
+    return -1
 };
 
 LRUCache.prototype.put = function(key, value) {
+    let newNode = new Node(value, key)
     if (this.cache.has(key)) {
-        this.list.remove(key)
-        this.list.add(key)
-        this.cache.set(key, value)
+        this.remove(this.cache.get(key)) 
+        this.push(newNode)
+        this.cache.set(key, newNode)
     } else {
-        if (this.cache.size === this.capacity) {
-            let keyToRemove = this.list.removeFirst()
-            this.list.add(key)
-            this.cache.set(key, value)
+        // at capacity
+        if (this.cache.size >= this.capacity) {
+            // find LRU node 
+            let lruNode = this.left.next
+            
+            // remove LRU node from queue
+            let lruKey = lruNode.key
+            
+            // remove corresponding (key, value) from cache
+            this.cache.delete(lruKey)
+            
+            // add newNode to queue
+            this.push(newNode)
+            
+            // add newNode to cache
+            this.cache.set(key, newNode)
         } else {
-            this.list.add(key)
-            this.cache.set(key, value)
+        // more room available
+            this.push(newNode, this)    
+            this.cache.set(key, newNode)
         }
     }
 };
-
 let cache = new LRUCache(2)
 cache.put(1, 1)
 cache.put(2, 2)
