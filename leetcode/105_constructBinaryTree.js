@@ -23,8 +23,3 @@ function TreeNode(val, left, right) {
     this.left = (left===undefined ? null : left)
     this.right = (right===undefined ? null : right)
 }
-
-let preorder = [3,9,20,15,7]
-let inorder = [9,3,15,20,7]
-
-buildTree(preorder, inorder)
