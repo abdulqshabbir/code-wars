@@ -122,4 +122,7 @@ Here we can make two passses through the list if we first find the size of the l
 
 ## Lessons learned from copyRandomList
 Here we can use a map to keep a mapping of our "original node" to our "copy node". This lets us clone the original list in O(n) space and O(n) time.
-However, if we add each "copy node" right after our "original node" we can reference the corresponding copy reference node in O(1) space.       
+However, if we add each "copy node" right after our "original node" we can reference the corresponding copy reference node in O(1) space.
+
+## Lessons learned from implementTrie
+Here I learned that we can use a tree data structure to store characters within a string. Although, the insertion and lookup of words can be done in constant time using a hashmap, performing a `startsWith` operation will require O(n) time in the worst case. Prefix trees are extremely efficient at looking for string prefixes allowing us to perform a `startsWith` operation in constant time.
