@@ -126,3 +126,6 @@ However, if we add each "copy node" right after our "original node" we can refer
 
 ## Lessons learned from implementTrie
 Here I learned that we can use a tree data structure to store characters within a string. Although, the insertion and lookup of words can be done in constant time using a hashmap, performing a `startsWith` operation will require O(n) time in the worst case. Prefix trees are extremely efficient at looking for string prefixes allowing us to perform a `startsWith` operation in constant time.
+
+## Lessons learned from Kth Largest Element in Stream
+If we have `N` elements in a stream and want to easily be able to find the kth largest element in `log(n)` time we can store the k-largest elements into a heap of size `k`. This guarantees that the min element in the heap of k-largest elements is the kth largest element and we can add/retrieve the kth largest element in `O(logn)` time.
