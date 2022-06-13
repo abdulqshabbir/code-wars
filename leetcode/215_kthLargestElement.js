@@ -66,12 +66,57 @@ function Heap(values) {
     }
 }
 
-var findKthLargest = function(nums, k) {
-    let heap = new Heap(nums)
+// var findKthLargest = function(nums, k) {
+//     let heap = new Heap(nums)
     
-    for (let i = 0; i < k - 1; i++) {
-        heap.removeMax() 
+//     for (let i = 0; i < k - 1; i++) {
+//         heap.removeMax() 
+//     }
+    
+//     return heap.removeMax()
+// };
+
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+*/
+
+function partition(arr, l, r, k) {
+    // should return the pivot index after partition
+    let i = l - 1
+    let j = l
+    let pivot = arr[r] 
+    
+    while (j < r) {
+        if (arr[j] <= pivot) {
+            let temp = arr[i + 1]
+            arr[i+1] = arr[j]
+            arr[j] = temp
+            j++
+            i++
+        } else {
+            j++
+        }
     }
     
-    return heap.removeMax()
+    // j === r
+    let temp = arr[i+1] 
+    arr[i+1] = pivot
+    arr[j] = temp
+    
+    if (i + 1 === arr.length - k) {
+        return arr[i+1]
+    } else if (i + 1 < arr.length -k) {
+        return partition(arr, i+2, r, k)
+    } else {
+        return partition(arr, l, i, k)
+    }
+}
+
+var findKthLargest = function(nums, k) {
+    return partition(nums, 0, nums.length -1, k)
 };
+
+console.log(findKthLargest([3,2,1,5,6,4],2))
