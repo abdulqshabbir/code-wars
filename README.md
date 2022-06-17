@@ -129,3 +129,6 @@ Here I learned that we can use a tree data structure to store characters within 
 
 ## Lessons learned from Kth Largest Element in Stream
 If we have `N` elements in a stream and want to easily be able to find the kth largest element in `log(n)` time we can store the k-largest elements into a heap of size `k`. This guarantees that the min element in the heap of k-largest elements is the kth largest element and we can add/retrieve the kth largest element in `O(logn)` time.
+
+## Lessons learned from clone graph
+Here we can use a recursive DFS algorithm with a hashtable to clone a graph. If a node already exists in our hashtable, we can return it (base case). Otherwise we create a new node, add it to our hashtale and iterate over all the old node's neighbors and add the corresponding new nodes.
