@@ -1,85 +1,65 @@
 var orangesRotting = function(grid) {
     const rotten = new Set()
-    const fresh = new Set()
     let total = 0
+    let fresh = 0
     const ROWS = grid.length
     const COLS = grid[0].length
     
     for (let r = 0; r < ROWS; r++) {
         for (let c = 0; c < COLS; c++) {
             let pos = r + "," + c
+            if (grid[r][c] === 1) fresh++
             if (grid[r][c] === 2) rotten.add(pos) 
-            if (grid[r][c] === 1) fresh.add(pos)
             if (grid[r][c] === 1 || grid[r][c] === 2) total++
         }
     }
     
-    if (rotten.size === 0) return -1
+    if (fresh === 0) return 0
     
-    let visited = new Set()
-    
-    for (let pos of rotten) {
-        let [r, c] = pos.split(",").map(Number)
-        dfs(r, c)
-    }
-    
-    if (visited.size !== total) return -1
-    
-    function dfs(r, c) {
-        let isValidRow = r >=0 && r < grid.length
-        let isValidCol = c >=0 && c < grid[0].length
-        
-        if (!isValidRow || !isValidCol) return
-        
-        if (grid[r][c] === 0) return
-        
-        if (visited.has(r + "," + c)) return
-        
-        const pos = r + "," + c
-        visited.add(pos)
-        
-        dfs(r-1, c)     
-        dfs(r+1, c)     
-        dfs(r, c-1)     
-        dfs(r, c+1)     
-    }
-    
-    visited = new Set()
-    
-    return exploreTime(grid, visited, rotten, total)
+    return exploreTime(grid, rotten, fresh, total)
 };
 
 
-function exploreTime(grid, visited, rotten, total) {
-    let time = 0
+function exploreTime(grid, rotten, fresh, total) {
+    let time = -1
     let q = []
     
     for (let orange of rotten) {
         q.push(orange)
     }
     
-    while (q.length > 0) {
+    while (q.length > 0 && fresh > 0) {
         let qLength = q.length
-        
-        if (total === visited.size) return time
         
         for (let i = 0; i < qLength; i++) {
             let current = q.shift()
-            visited.add(current)
             const [r, c] = current.split(",").map(Number)
-            const neighbors = getNeighbors(r, c, grid, visited) 
             
+            if (grid[r][c] === 1) {
+                fresh--
+                grid[r][c] = 2
+            }
+            const neighbors = getNeighbors(r, c, grid) 
             for (let n of neighbors) {
                 q.push(n)
             }
         }
-        
         time++
     }
+    
+    let numRottenOranges = 0
+    
+    for (let r = 0; r < grid.length; r++) {
+        for (let c = 0; c < grid[0].length; c++) {
+            if (grid[r][c] === 2) {
+                numRottenOranges++
+            }
+        }
+    }
         
-    return time
+    return numRottenOranges === total ? time : -1
 }
-function getNeighbors(r, c, grid, visited) {
+function getNeighbors(r, c, grid) {
     let res = [
         [r+1, c],
         [r-1, c],
@@ -88,12 +68,10 @@ function getNeighbors(r, c, grid, visited) {
     ]
     
     const isValidRowCol = ([r, c]) => r >= 0 && r < grid.length && c >=0 && c < grid[0].length
-    const isNotVisited = ([r, c]) => !visited.has(r + "," + c)
-    const isOrange = ([r, c]) => grid[r][c] !== undefined && grid[r][c] !== 0
+    const isFresh = ([r, c]) => grid[r][c] === 1
     
     return res
-        .filter(n => isValidRowCol(n) && isNotVisited(n) && isOrange(n))
-        .map(([r, c]) => r + "," + c)
+            .filter(n => isValidRowCol(n) && isFresh(n))
+            .map(([r, c]) => r + "," + c)
 }
-
-orangesRotting([[2,1,1],[1,1,0],[0,1,1]])
+orangesRotting([[2,2],[1,1],[0,0],[2,0]])
