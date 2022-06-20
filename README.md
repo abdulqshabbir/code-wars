@@ -132,3 +132,7 @@ If we have `N` elements in a stream and want to easily be able to find the kth l
 
 ## Lessons learned from clone graph
 Here we can use a recursive DFS algorithm with a hashtable to clone a graph. If a node already exists in our hashtable, we can return it (base case). Otherwise we create a new node, add it to our hashtale and iterate over all the old node's neighbors and add the corresponding new nodes.
+
+## Lessons learned from course schedule
+A directed graph can be used to describe the ordering in which events (such as course selections) can happen. To detect a deadlock or a cycle in a graph we can use a graph "coloring" technqiue. This involves labelling each node initally as "unvisited". For each node in the graph, we run a DFS on the node and mark it as "processing" and run DFS on all of its neighbors. If we ever encounter another processing node we are in a cycyle. As we run out of neighbors we can mark the nodes as "processed" and backtrack up.
+
