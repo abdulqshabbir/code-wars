@@ -20,7 +20,7 @@ class Solution {
         let p2 = getParent(v2, parent)
   
         if (p1 === p2) return false
-  
+            
         parent[p1] = p2
       }
       return true
