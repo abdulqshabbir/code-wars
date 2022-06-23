@@ -136,3 +136,5 @@ Here we can use a recursive DFS algorithm with a hashtable to clone a graph. If 
 ## Lessons learned from course schedule
 A directed graph can be used to describe the ordering in which events (such as course selections) can happen. To detect a deadlock or a cycle in a graph we can use a graph "coloring" technqiue. This involves labelling each node initally as "unvisited". For each node in the graph, we run a DFS on the node and mark it as "processing" and run DFS on all of its neighbors. If we ever encounter another processing node we are in a cycyle. As we run out of neighbors we can mark the nodes as "processed" and backtrack up.
 
+## Lessons learned from combination sum
+Backtracking is a technique used to reduce the number of recursive calls made in a decision tree by using a bounding function. For this problem the bounding function checks if the totalSoFar is bigger than the target sum. If so, further recursive calls are not made. This problem is related to the subset problem (inclusion-exclusion) where the left decision subtree includes `candidates[i]` and the right subtree tries to exclude `candidates[i]`.
