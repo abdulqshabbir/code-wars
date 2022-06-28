@@ -138,3 +138,7 @@ A directed graph can be used to describe the ordering in which events (such as c
 
 ## Lessons learned from combination sum
 Backtracking is a technique used to reduce the number of recursive calls made in a decision tree by using a bounding function. For this problem the bounding function checks if the totalSoFar is bigger than the target sum. If so, further recursive calls are not made. This problem is related to the subset problem (inclusion-exclusion) where the left decision subtree includes `candidates[i]` and the right subtree tries to exclude `candidates[i]`.
+
+## Lessons learned from allConstruct
+allConstruct is about creating all possible ways to construct `target` given some `wordBank`. Here, a recursive approach involves checking each `word` of the `wordBank` to see if it is a prefix of target. If it is, we can call the function `allConstruct` with the remaining target after prefix has been removed.
+In this problem the return value of an empty string is `[[]]` indicating a combination was found and `[]` indicating no combinations were found. As we go up our recursive calls, we take return value of our recursive call and add the current prefix in our stack frame to the start of every element in our 2D array.
