@@ -21,4 +21,30 @@ function gridTraveler(n, m, memo = {}) {
     return memo[key]
 }
 
-console.log(gridTraveler(18, 18))
+function gridTravelerTabulated(n, m) {
+    if (n === 0 || m === 0) return 0
+
+    let table = new Array(n+1)
+        .fill()
+        .map(() => new Array(m+1).fill(0))
+    
+    // base case: for 1 row and 1 col num ways is one
+    table[1][1] = 1
+
+    // recursive case: f(n, m) = f(n-1, m) + f(n, m-1)
+    for (let r = 1; r < n+1; r++) {
+        for (let c = 1; c < m + 1; c++) {
+            if (r === 1 && c ===1) continue
+
+            table[r][c] = table[r-1][c] + table[r][c-1]
+        }
+    }
+
+    return table[n][m]
+}
+
+console.log(gridTravelerTabulated(1, 0)) //0
+console.log(gridTravelerTabulated(0, 1)) // 0
+console.log(gridTravelerTabulated(2, 2)) // 2
+console.log(gridTravelerTabulated(8, 9)) // 6435
+console.log(gridTravelerTabulated(18, 18)) // 2333606220
