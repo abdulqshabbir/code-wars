@@ -8,4 +8,17 @@ function fibonacci(n, memo = new Map()) {
     return memo.get(n)
 }
 
-console.log(fibonacci(50))
+
+function fibonacciTabulated(n) {
+    let table = new Array(n+1)
+
+    // base cases
+    table[0] = 0
+    table[1] = 1
+
+    // recursive case in tabular form
+    for (let i = 2; i < n+1; i++) {
+        table[i] = table[i-1] + table[i-2]
+    }
+    return table[n]
+}
