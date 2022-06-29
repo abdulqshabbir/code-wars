@@ -27,7 +27,27 @@ function canSum(target, nums, memo = new Map()) {
     return false
 }
 
-const target = 300
-const nums = [7, 14]
+function canSumTabulated(target, nums) {
+    let table = new Array(target + 1).fill(false)
+    
+    // base case
+    table[0] = true
 
-console.log(canSum(target, nums))
+    // recursive step
+    for (let i = 0; i < target + 1; i++) {
+        if (table[i] === true) {
+            for (let num of nums) {
+                const inBounds = i + num <= target
+                if (inBounds) {
+                    table[i + num] = true
+                }
+            }
+        } 
+    }
+
+    return table[target]
+}
+
+console.log(canSumTabulated(7, [3, 5, 4])) // true
+console.log(canSumTabulated(2, [3, 5, 4])) // false
+console.log(canSumTabulated(300, [7, 14])) // false
