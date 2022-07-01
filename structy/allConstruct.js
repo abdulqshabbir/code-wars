@@ -18,6 +18,12 @@ function allConstruct(target, wordBank) {
     return combinations
 }
 
+function allConstructTabulated(target, wordBank) {
+    const table = new Array(target.length + 1)
+
+    
+}
+
 console.log(allConstruct('purple', ['purp', 'p', 'ur', 'le', 'purpl']))
 console.log(allConstruct('skateboard', ['bo', 'rd', 'ate', 't', 'ska', 'sk', 'boar']))
 console.log(allConstruct('aaaaaaaaaaaaaaaaaaaaaaaaaz', ['a', 'aa', 'aaa', 'aaaa', 'aaaaa']))
