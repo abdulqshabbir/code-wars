@@ -23,3 +23,19 @@ var rob = function(nums) {
     
     return Math.max(robRecurse(0), robRecurse(1))
 };
+
+var robTabulated = function(nums) {
+    nums.push(0)
+    
+    let lastHouse = nums[nums.length -2]
+    let secondLastHouse = nums[nums.length -3]
+    
+    nums[nums.length -2] = lastHouse
+    nums[nums.length -3] = Math.max(lastHouse, secondLastHouse)
+    
+    for (i = nums.length -4; i >=0; i--) {
+        nums[i] = nums[i] + Math.max(nums[i+2], nums[i+3]) 
+    }
+    
+    return Math.max(nums[0], nums[1])
+};
