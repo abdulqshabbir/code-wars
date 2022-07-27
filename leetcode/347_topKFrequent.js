@@ -1,37 +1,52 @@
+// bucket sort approach
+// time: O(n), space: O(n)
 var topKFrequent = function(nums, k) {
-    const counts = {}
-    // O(n) time to set up hashmap
+    const numCounts = new Map()
+
     for (let num of nums) {
-        if (num in counts) {
-            counts[num] += 1
-        } else {
-            counts[num] = 1
-        }
+        if (!(numCounts.has(num))) numCounts.set(num, 0)
+        numCounts.set(num, numCounts.get(num) + 1)
     }
     
-    const countToValues = new Array(nums.length + 1)
-    const len = countToValues.length - 1
-    for (let i = 1; i <= len; i++) {
-        countToValues[i] = []
+    const buckets = new Array(nums.length + 1).fill(null).map(e => new Array(0))
+    
+    for (let num of numCounts.keys()) {
+        buckets[numCounts.get(num)].push(num)
     }
+
+    const res = []
+    
+    for (let i = buckets.length - 1; i >=0; i--) {
+        if (buckets[i].length > 0) {
+            res.push(...buckets[i])
+            if (res.length === k) return res
+        }
+    } 
+
+};
+
+// time: O(nlogn), space: O(n)
+var topKFrequent = function(nums, k) {
+    const freq = new Map()
+    
+    for (let num of nums) {
+        if (!freq.has(num)) freq.set(num, 0)
+        freq.set(num, freq.get(num) + 1)
+    }
+    
+    const numberFrequencyTuples = []
+    
+    for (let [num, f] of freq.entries()) {
+        numberFrequencyTuples.push([num, f])
+    }
+    
+    numberFrequencyTuples.sort((a, b) => b[1] - a[1])
+    
     const result = []
-    let inserts = 0
-    let i = len
     
-    // O(n) time to set up countToValues array
-    for (let [val, count] of Object.entries(counts)) {
-        val = parseInt(val)
-        countToValues[count].push(val)
+    for (let i = 0; i < k; i++) {
+        result.push(numberFrequencyTuples[i][0])
     }
     
-    while (inserts < k && i > 0) {
-        while (countToValues[i].length === 0) {
-            i--
-        }
-        const val = countToValues[i].pop()
-        result.push(val)
-        inserts++
-    }
-    
-    return result
+    return result 
 };
