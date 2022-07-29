@@ -1,6 +1,8 @@
 # Problems to Revisit
 - [ ] Leetcode 347 Top K most frequent elements
 - [ ] Leetcocde 49 Group anagrams
+- [ ] Leetcode 36 Valid Sudoku
+- [ ] Leetcode 128 Longest Consequtive Sequence
 
 # Codewars Solutions
 

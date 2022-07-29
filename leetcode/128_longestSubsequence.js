@@ -1,29 +1,19 @@
 var longestConsecutive = function(nums) {
-    let numMap = new Map()
-    
-    nums.forEach(num => {
-        numMap.set(num, num)
-    })
-    
-    let longestSeq = 0
+    const numsSet = new Set(nums)
+    let maxSeqSize = 0
     
     for (let num of nums) {
-        let seq = 1
-        if (seq > longestSeq) {
-            longestSeq = seq
+        if (numsSet.has(num-1)) continue
+        
+        let seqSize = 1
+        let n = num 
+        while (numsSet.has(n + 1)) {
+            seqSize++
+            n++ 
         }
-        let curr = num
-        if (!numMap.has(curr - 1)) {
-            // curr is start of sequence
-            while (numMap.has(curr+1)) {
-                seq++
-                if (seq > longestSeq) longestSeq = seq
-                curr = numMap.get(curr+1) 
-            }
-        } 
+        
+        maxSeqSize = Math.max(seqSize, maxSeqSize)
     }
     
-    return longestSeq
-    
+    return maxSeqSize
 };
-longestConsecutive([100,4,200,1,3,2])
