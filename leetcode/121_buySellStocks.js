@@ -5,19 +5,20 @@
     Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
 */
 var maxProfit = function(prices) {
-    let maxProfit = 0
-    let profitSoFar = 0 
-    let b = 0 // buy index
-    let s = 1 // sell index
-    while (s < prices.length) {
-        profitSoFar = prices[s] - prices[b]
-        if (prices[s] >= prices[b]) {
-            maxProfit = Math.max(profitSoFar, maxProfit)
-        } else {
-            b = s
+    let buyAt = prices[0] 
+    let sellAt = prices[0]
+    let maximumProfit = 0
+    
+    for (let price of prices) {
+        if (price < buyAt) {
+            buyAt = price
+            sellAt = price
         }
-        s++
+        else if (price > sellAt) {
+            sellAt = price
+            maximumProfit = Math.max(maximumProfit, sellAt - buyAt)
+        }
     }
     
-    return maxProfit
+    return maximumProfit
 };
