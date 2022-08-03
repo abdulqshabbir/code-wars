@@ -3,6 +3,7 @@
 - [ ] Leetcocde 49 Group anagrams
 - [ ] Leetcode 36 Valid Sudoku
 - [ ] Leetcode 128 Longest Consequtive Sequence
+- [ ] Leetcode 424 longest repeating character replacement
 
 # Codewars Solutions
 
