@@ -1,29 +1,27 @@
-function isValid(s) {
+var isValid = function(s) {
+    const openingSymbols = new Set(["(", "{", "["])
+    
+    const closingToOpening = {
+        ")": "(",
+        "}": "{",
+        "]": "["
+    }
+    
     const stack = []
-    stack.push(s[0])
     
-    let idx = 1
-    
-    while (idx < s.length) {
-        if (stack.length === 0) {
-           stack.push(s[idx]) 
-        } else if (isComplement(stack[stack.length -1], s[idx])) {
-            stack.pop() 
+    for (let char of s) {
+        // if char is an opening bracket push onto the stack
+        if (openingSymbols.has(char)) {
+            stack.push(char)
         } else {
-            stack.push(s[idx])
+        // if char is a closing bracket check to see if it matches the "closest complementary opening bracket"
+            if (closingToOpening[char] === stack[stack.length -1]) {
+                stack.pop()
+            } else {
+                return false
+            }
         }
-        idx++
     }
     
     return stack.length === 0
 };
-
-function isComplement(left, right) {
-    if (left === "(" && right === ")") return true
-    
-    if (left === "{" && right === "}") return true
-    
-    if (left === "[" && right === "]") return true
-    
-    return false
-}
