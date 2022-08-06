@@ -1,67 +1,41 @@
-var StackNode = function(val) {
-    this.val = val
-    this.prev = null
-    this.next = null
-}
-
-var Stack = function() {
-    this.first = null
+var MinStack = function() {
+    this.stack = []
+    this.minStack = []
 };
 
-Stack.prototype.push = function(val) {
-    if (!this.first) {
-        this.first = new StackNode(val)
-    } else {
-        this.first.next = new StackNode(val)
-        this.first.next.prev = this.first
-        this.first = this.first.next
-    }
-}
-
-Stack.prototype.pop = function() {
-    if (this.first === null) {
-        return
-    }
-    else if (this.first.prev === null) {
-        this.first = null
-    } else {
-        let nodeToRemove = this.first
-        let newFirst = this.first.prev
-        newFirst.next = null
-        nodeToRemove.prev = null
-        this.first = newFirst
-    }
-}
-
-Stack.prototype.top = function() {
-    if (!this.first) return null
-    return this.first.val
-}
-
-var MinStack = function() {
-    this.s = new Stack()
-    this.min = new Stack()
-}
-
+/** 
+ * @param {number} val
+ * @return {void}
+ */
 MinStack.prototype.push = function(val) {
-    if (this.s.first === null) {
-        this.s.push(val)
-        this.min.push(val)
+    if (this.stack.length === 0) {
+        this.stack.push(val) 
+        this.minStack.push(val)
     } else {
-        this.s.push(val)
-        this.min.push(Math.min(val, this.min.first.val))
+        const currentMin = this.minStack[this.minStack.length -1]
+        this.stack.push(val)
+        this.minStack.push(Math.min(val, currentMin))
     }
-}
+};
 
-MinStack.prototype.pop = function () {
-    this.s.pop()
-    this.min.pop()
-}
+/**
+ * @return {void}
+ */
+MinStack.prototype.pop = function() {
+    this.stack.pop()
+    this.minStack.pop()
+};
 
-MinStack.prototype.getMin = function() {
-    return this.min.first.val
-}
-
+/**
+ * @return {number}
+ */
 MinStack.prototype.top = function() {
-    return this.s.first.val
-}
+    return this.stack[this.stack.length - 1]
+};
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.getMin = function() {
+    return this.minStack[this.minStack.length -1] 
+};
