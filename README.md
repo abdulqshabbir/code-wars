@@ -4,6 +4,7 @@
 - [ ] Leetcode 36 Valid Sudoku
 - [ ] Leetcode 128 Longest Consequtive Sequence
 - [ ] Leetcode 424 longest repeating character replacement
+- [ ] Leetcode 22 generate parenthesis
 
 # Codewars Solutions
 

@@ -2,30 +2,26 @@
  * @param {number} n
  * @return {string[]}
  */
-var generateParenthesis = function (n) {
-  let result = [];
 
-  solve(result, n, [], "", n);
-
-  return result;
-};
-
-function solve(result, openLeft, openStack, soFar, n) {
-  if (openStack.length === 0 && openLeft === 0) {
-    while (soFar.length < 2 * n) {
-      soFar += ")";
+var generateParenthesis = function(n) {
+    const res = []
+    
+    function makeCombinations(open = 0, closed = 0, soFar ="") {
+        if (open === n && closed === n) {
+            res.push(soFar)
+            return
+        }
+        
+        if (open > closed && closed < n) {
+            makeCombinations(open, closed + 1, soFar + ")")
+        }
+        
+        if (open < n) {
+            makeCombinations(open + 1, closed, soFar + "(")
+        } 
     }
-    result.push(soFar);
-    return;
-  }
-  if (openStack.length !== 0) {
-    let newOpenStack = openStack.slice();
-    newOpenStack.pop();
-    solve(result, openLeft, newOpenStack, soFar + ")", n);
-  }
-  if (openLeft > 0) {
-    let newOpenStack = openStack.slice();
-    newOpenStack.push("(");
-    solve(result, openLeft - 1, newOpenStack, soFar + "(", n);
-  }
-}
+    
+    makeCombinations()
+        
+    return res 
+};
