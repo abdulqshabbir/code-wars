@@ -1,28 +1,26 @@
 // bucket sort approach
 // time: O(n), space: O(n)
 var topKFrequent = function(nums, k) {
-    const numCounts = new Map()
-
+    const valueToFreq = new Map()
+    
     for (let num of nums) {
-        if (!(numCounts.has(num))) numCounts.set(num, 0)
-        numCounts.set(num, numCounts.get(num) + 1)
+        if (!valueToFreq.has(num)) valueToFreq.set(num, 0)
+        valueToFreq.set(num, valueToFreq.get(num) + 1)
     }
     
-    const buckets = new Array(nums.length + 1).fill(null).map(e => new Array(0))
+    const buckets = new Array(nums.length + 1).fill(0).map(() => new Array(0))
     
-    for (let num of numCounts.keys()) {
-        buckets[numCounts.get(num)].push(num)
+    for (let [val, freq] of valueToFreq.entries()) {
+        buckets[freq].push(val)
     }
-
-    const res = []
     
-    for (let i = buckets.length - 1; i >=0; i--) {
-        if (buckets[i].length > 0) {
-            res.push(...buckets[i])
-            if (res.length === k) return res
+    const kFrequentElements = []
+    for (let i = nums.length; i >= 0; i--) {
+        for (let j = buckets[i].length -1; j >=0; j--) {
+            kFrequentElements.push(buckets[i][j])
+            if (kFrequentElements.length === k) return kFrequentElements
         }
-    } 
-
+    }
 };
 
 // time: O(nlogn), space: O(n)

@@ -1,5 +1,5 @@
 # Problems to Revisit
-- [ ] Leetcode 347 Top K most frequent elements
+- [x] Leetcode 347 Top K most frequent elements (completed again on August 9th)
 - [ ] Leetcocde 49 Group anagrams
 - [ ] Leetcode 36 Valid Sudoku
 - [ ] Leetcode 128 Longest Consequtive Sequence
