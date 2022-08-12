@@ -5,6 +5,7 @@
 - [ ] Leetcode 128 Longest Consequtive Sequence
 - [ ] Leetcode 424 longest repeating character replacement
 - [ ] Leetcode 22 generate parenthesis
+- [ ] Leetcode 143 reorder list
 
 # Codewars Solutions
 
