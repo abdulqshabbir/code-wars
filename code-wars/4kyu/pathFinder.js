@@ -16,8 +16,7 @@ Task
         node: [row, col]
         
         visited
-            ["0,0"] after level 0
-            ["0,0", "0, 1", "1, 0"] after level 1
+            [[0, 0]] after level 0
 
         queue = [[0, 0]] level 0
         queue = [[1, 0], [0, 1]] level 1
@@ -28,19 +27,113 @@ Task
 
 
     0  1  2
-0   .  W  . 
-1   .  W  .
-2   .  .  . 
+0   .  .  . 
+1   .  .  .
+2   .  W  . 
+
+BFS:
+[0, 0]
+[0, 1], [1, 0]
+[0, 2], [2, 2], [2, 0]
+
+
+queue = [[0, 0]]
+queue = []
+queue = [[0, 1], [1, 0]]
 
 function main 
+  N = maze.length
   visited = []
   queue = [[0,0]]
   while (queue.length !== 0) {
-    
+    const [row, col] = queue.shift() // visit maze[row][col]
+    if (row === N-1 && col === N-1) { // win check
+        return true
+    }
+    let neighbors = getValidNeighbors(row, col)
+    queue.concat(neighbors) // add neighbors to visit next
   }
   return false
 
 
-function getValidNeighbours(row, col) => array of valid neighbors
-    potentialNeighbors = [[row+1, col], [row, col +1],]
+function getValidNeighbours(row, col) => [[0, 1], [1, 0]]
+    return [[row+1, col], [row, col +1]].filter([row, col] => {
+        return !isWall(row, col) && inBounds(row, col) && !visited(row, col)
+    }) 
+
+function isWall(row, col) {
+    reutrn max[row][col] === "W"
+}
+
+function inBounds (row, col) {
+    return row <= N-1 && col <= N-1
+}
+
+function visited(row, col) {
+    for each [visitedRow, visitedCol] in visited
+        if (row === visitedRow and col ==== visitedCol) return true
+
+    visited.push([row, col])
+    return false
+}
+
+
+*/
+
+function pathFinder(maze){
+    maze = maze.split("\n").map(cell => [...cell])
+
+    let N = maze.length
+    const visitedNodes = new Set()
+    let queue = [[0, 0]]
+
+    while (queue.length !== 0) {
+      const [row, col] = queue.shift() // visit maze[row][col]
+      if (row === N-1 && col === N-1) { // win check
+          return true
+      }
+      let neighbors = getValidNeighbours(row, col)
+      queue = queue.concat(neighbors) // add neighbors to visit next
+    }
+    
+    function getValidNeighbours(row, col) {
+        return [[row+1, col], [row, col +1], [row-1, col], [row, col-1]].filter(([row, col]) => {
+            return inBounds(row, col) && !isWall(row, col) && !visited(row, col)
+        })  
+    }
+    
+    function inBounds (row, col) {
+        return row >= 0 && row <= N-1 && col >=0 && col <= N-1
+    }
+
+    function isWall(row, col) {
+        return maze[row][col] === "W"
+    }
+
+    function visited(row, col) {
+        const key = `${row},${col}`
+        if (visitedNodes.has(key)) return true;
+        visitedNodes.add(key);
+        return false;
+    }
+    return false;
+}
+
+pathFinder(`....WWW.
+WW.W.W..
+.W..WW..
+W...W..W
+W...W...
+..W...W.
+.W....W.
+....WW..`) // len(str) = 9, so 3 x 3
+/*
+    [
+        [".W."],
+        [".", "W", "."],
+        [".", ".", "."]
+    ]
+
+    [ '.W.', '.W.', '...' ].map(x => [...x])
+    [ [ '.', 'W', '.' ], [ '.', 'W', '.' ], [ '.', '.', '.' ] ]
 */
