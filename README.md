@@ -1,6 +1,6 @@
 # Problems to Revisit
 - [x] Leetcode 347 Top K most frequent elements (completed again on August 9th)
-- [ ] Leetcocde 49 Group anagrams
+- [x] Leetcocde 49 Group anagrams (completed August 19, 2022)
 - [ ] Leetcode 36 Valid Sudoku
 - [ ] Leetcode 128 Longest Consequtive Sequence
 - [ ] Leetcode 424 longest repeating character replacement
