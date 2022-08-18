@@ -42,33 +42,37 @@
 */
 
 var groupAnagrams = function(strs) {
-    let result = []
-    let countsToAnagrams = new Map()
+    const res = []
+    const map = {}
     
-    // O(n) for outer for loop
     for (let word of strs) {
-        let count = new Array(26).fill(0)
-        // O(k) for inner loop
-        for (let char of word) {
-            let idx = char.charCodeAt() - "a".charCodeAt()
-            count[idx] += 1
-        }
-        // O(26) for stringifying
-        count = JSON.stringify(count)
-        if (countsToAnagrams.has(count)) {
-            let anagrams = countsToAnagrams.get(count)
-            anagrams.push(word)
-        } else {
-            countsToAnagrams.set(count, [ word ])
-        }
+        let key = createFrequencyKey(word)
+        if (!(key in map)) map[key] = []
+        map[key].push(word) 
     }
     
-    // O(n) for indexing into each key in the map
-    for (let value of countsToAnagrams.values()) {
-        result.push(value)
+    for (let key in map) {
+        res.push(map[key])
     }
     
-    return result
+    return res
 };
+
+function createFrequencyKey(word) {
+    let freq = new Array(26).fill(0)
+    
+    for (let char of word) {
+        let key = char.charCodeAt() - 'a'.charCodeAt()
+        freq[key]++
+    }
+    
+    const arr = []
+    for (let [idx, frequency] of freq.entries()) {
+         let letter = String.fromCharCode(idx + 'a'.charCodeAt())
+         arr.push(letter + "," + frequency)
+    }
+    
+    return arr.join("")
+}
 
 groupAnagrams(["eat","tea","tan","ate","nat","bat"])
