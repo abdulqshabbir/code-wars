@@ -6,6 +6,7 @@
 - [ ] Leetcode 424 longest repeating character replacement
 - [ ] Leetcode 22 generate parenthesis
 - [ ] Leetcode 143 reorder list
+- [ ] Leetcode 12385 time to infect tree
 
 # Codewars Solutions
 
