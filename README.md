@@ -7,6 +7,8 @@
 - [ ] Leetcode 22 generate parenthesis
 - [ ] Leetcode 143 reorder list
 - [ ] Leetcode 12385 time to infect tree
+- [ ] Leetcode 2352 Design a Food Rating System
+- [ ] Leetcode 2342 Max Sum of pair with equal digits
 
 # Codewars Solutions
 
