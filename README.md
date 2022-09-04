@@ -9,6 +9,7 @@
 - [ ] Leetcode 12385 time to infect tree
 - [ ] Leetcode 2352 Design a Food Rating System
 - [ ] Leetcode 2342 Max Sum of pair with equal digits
+- [ ] Leetcode 2337 Move Pieces to Obtain a String
 
 # Codewars Solutions
 
