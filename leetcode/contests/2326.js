@@ -1,28 +1,53 @@
 var spiralMatrix = function(m, n, head) { 
     let matrix = (new Array(m).fill()).map(() => new Array(n).fill(-1))
     
-    let visited = new Set()
     let curr = head
+    let lCol = 0
+    let rCol = m - 1
+    let tRow = 0
+    let bRow = n - 1
 
-    function dfs(r, c, matrix, visited) {
-        let ROWS = matrix.length
-        let COLS = matrix[0].length
-        if (!curr) return
-        if (r < 0 || r >= ROWS || c < 0 || c >= COLS) return
-        if (matrix[r][c] !== -1) return
-        if (visited.has(r + "," + c)) return
+    let r = 0
+    let c = 0
+
+    while (curr !== null) {
+        matrix[r][c] = head.val
+        head = head.next
+
+        if (head === null) return matrix
         
-        visited.add(r + "," + c)
-        matrix[r][c] = curr.val
-        curr = curr.next
-        
-        dfs(r, c + 1, matrix, visited, curr)
-        dfs(r+1, c, matrix, visited, curr)
-        dfs(r, c - 1, matrix, visited, curr)
-        dfs(r-1, c, matrix, visited, curr)
+        while (c < rCol) {
+            c++
+            matrix[r][c] = head.val
+            head = head.next
+            if (head === null) return matrix
+        }
+        tRow++
+
+        while (r < bRow) {
+            r++
+            matrix[r][c] = head.val
+            head = head.next
+            if (head === null) return matrix
+        }
+        rCol--
+
+        while (c > lCol) {
+            c--
+            matrix[r][c] = head.val
+            head = head.next
+            if (head === null) return matrix
+        }
+        bRow--
+
+        while(r > tRow) {
+            r--
+            matrix[r][c] = head.val
+            head = head.next
+            if (head === null) return matrix
+        }
+        lCol++
     }
-
-    dfs(0, 0, matrix, visited)
     return matrix
 };
 
@@ -34,8 +59,9 @@ class ListNode {
     }
 }
 
-let ll = new ListNode(3)
-ll.next = new ListNode(0)
-ll.next.next = new ListNode(1)
+let ll = new ListNode(1)
+ll.next = new ListNode(2)
+ll.next.next = new ListNode(3)
+ll.next.next = new ListNode(4)
 
 console.log(spiralMatrix(2, 3, ll))
