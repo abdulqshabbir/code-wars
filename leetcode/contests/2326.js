@@ -1,16 +1,15 @@
 var spiralMatrix = function(m, n, head) { 
     let matrix = (new Array(m).fill()).map(() => new Array(n).fill(-1))
     
-    let curr = head
     let lCol = 0
-    let rCol = m - 1
+    let rCol = n - 1
     let tRow = 0
-    let bRow = n - 1
+    let bRow = m - 1
 
     let r = 0
     let c = 0
 
-    while (curr !== null) {
+    while (head !== null) {
         matrix[r][c] = head.val
         head = head.next
 
@@ -47,6 +46,7 @@ var spiralMatrix = function(m, n, head) {
             if (head === null) return matrix
         }
         lCol++
+        c++
     }
     return matrix
 };
@@ -54,14 +54,21 @@ var spiralMatrix = function(m, n, head) {
 
 class ListNode {
     constructor(val, next) {
-        this.val = val
+        this.val = val ?? 0
         this.next = next ?? null
     }
 }
 
-let ll = new ListNode(1)
-ll.next = new ListNode(2)
-ll.next.next = new ListNode(3)
-ll.next.next = new ListNode(4)
+let dummy = new ListNode(0)
+let llArr = [3,0,2,6,8,1,7,9,4,2,5,5,0]
 
-console.log(spiralMatrix(2, 3, ll))
+let curr = dummy
+let currIdx = 0
+
+while (currIdx < llArr.length) {
+    curr.next = new ListNode(llArr[currIdx])
+    currIdx++
+    curr = curr.next
+}
+
+console.log(spiralMatrix(3, 5, dummy.next))
